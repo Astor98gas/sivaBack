@@ -38,3 +38,6 @@ application.properties
 ### DB Data ###
 data/
 compose.yaml
+
+### Data ###
+uploads/
