@@ -27,4 +27,5 @@ public interface JwtRepository extends MongoRepository<JwtEntity, String> {
      * @return JWT si existe
      */
     JwtEntity findByToken(String token);
+
 }

@@ -5,7 +5,5 @@ package com.arsansys.siva.model.enums;
  */
 public enum ERol {
     ADMIN,
-    COMPRADOR,
-    VENDEDOR,
-    TRABAJADOR
+    USER
 }

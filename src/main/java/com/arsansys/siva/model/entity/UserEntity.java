@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document(collection = "users")
+@Document(collection = "user")
 public class UserEntity {
 
     /**

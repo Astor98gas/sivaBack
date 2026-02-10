@@ -16,12 +16,12 @@ import com.arsansys.siva.model.entity.UserEntity;
 import com.arsansys.siva.security.jwt.JwtUtils;
 import com.arsansys.siva.service.UserService;
 import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import tools.jackson.databind.DatabindException;
-import tools.jackson.databind.ObjectMapper;
 
 /**
  * Filtro de autenticación JWT.

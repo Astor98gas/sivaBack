@@ -39,4 +39,12 @@ public interface UserRepository extends MongoRepository<UserEntity, String> {
      */
     Optional<UserEntity> findByEmail(String email);
 
+    /**
+     * Verifica si un usuario existe por su ID.
+     * 
+     * @param id ID del usuario
+     * @return true si el usuario existe, false en caso contrario
+     */
+    boolean existsById(String id);
+
 }

@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -43,6 +42,7 @@ public class SecurityConfig {
     UserDetailsService userDetailsService;
 
     @Autowired
+    @Lazy
     JwtAutorizationFilter jwtAutorizationFilter;
 
     @Autowired
@@ -78,7 +78,7 @@ public class SecurityConfig {
                             "/vendedor/producto/getById/*", "/api/binary-image/*",
                             "/api/images/*", "/resorces/static/**", "/api/stripe/**", "/api/upload/**",
                             "/api/images/lowRes/**", "/getUserByEmail/**", "/getUserByUsername/**",
-                            "/admin/categoria/getById/**", "/admin/categoria/getAll")
+                            "/admin/categoria/getById/**", "/admin/categoria/getAll", "/api/v1/products**")
                             .permitAll();
                     auth.anyRequest().authenticated();
                     // auth.anyRequest().permitAll();
@@ -126,6 +126,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+        // configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
@@ -135,18 +136,4 @@ public class SecurityConfig {
         return source;
     }
 
-    /**
-     * Bean para el proveedor de autenticación Dao.
-     * <p>
-     * Configura el proveedor que valida usuarios con UserDetailsService y
-     * PasswordEncoder.
-     *
-     * @return DaoAuthenticationProvider Proveedor de autenticación configurado.
-     */
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }
 }
